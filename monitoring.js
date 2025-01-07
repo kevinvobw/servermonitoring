@@ -7,14 +7,15 @@ const devices = require('./config');
 
 // Create an Express app for the web interface
 const app = express();
-const port = 3000;
-const interval = 60000; // Check servers every minute
+const port = devices.metadata.port || 3000;
+const interval = devices.metadata.interval || 60000; // Check servers every minute
 app.use(express.json());
 
 const servers = devices.servers;
+const webhook = devices.webhookUrl;
 
 // Slack Webhook URL
-const slackWebhookUrl = 'https://hooks.slack.com/services/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'; // Replace with your Slack webhook URL
+const slackWebhookUrl = webhook; // Replace with your Slack webhook URL
 
 // Function to send a Slack alert
 async function sendSlackAlert(serverName, message) {
