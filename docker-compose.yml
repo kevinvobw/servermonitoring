@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  monitoring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host"
+    volumes:
+      - ./config.js:/app/config.js # Mount the config file
+      - /app/node_modules # Prevent overwriting node_modules in the container
+    environment:
+      - NODE_ENV=production # Set the Node.js environment
+    restart: unless-stopped # Automatically restart the container unless explicitly stopped

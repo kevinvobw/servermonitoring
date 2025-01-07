@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .status-up {
+            color: green;
+        }
+        .status-down {
+            color: red;
+        }
+        .acknowledge-btn {
+            padding: 5px 10px;
+            background-color: yellow;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Server Monitoring Dashboard</h1>
+    <table id="server-status">
+        <thead>
+            <tr>
+                <th>Server Name</th>
+                <th>Status</th>
+                <th>Last Alert</th>
+                <th>Acknowledge</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here via JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchStatus() {
+            const response = await fetch('/api/status');
+            const data = await response.json();
+            const tableBody = document.querySelector('#server-status tbody');
+            tableBody.innerHTML = '';
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.server_name}</td>
+                    <td class="${item.lastAlertTime ? 'status-down' : 'status-up'}">${item.lastAlertTime ? 'DOWN' : 'UP'}</td>
+                    <td>${item.lastAlertTime ? new Date(item.lastAlertTime).toLocaleString() : 'N/A'}</td>
+                    <td><button class="acknowledge-btn" onclick="acknowledgeError('${item.server_name}')">Acknowledge</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        async function acknowledgeError(serverName) {
+            const response = await fetch(`/acknowledge/${serverName}`, { method: 'POST' });
+            if (response.ok) {
+                alert(`${serverName} error acknowledged!`);
+                fetchStatus();  // Re-fetch status to update UI
+            } else {
+                alert('Failed to acknowledge error.');
+            }
+        }
+
+        // Fetch status every 10 seconds
+        setInterval(fetchStatus, 10000);
+        fetchStatus();
+    </script>
+</body>
+</html>
