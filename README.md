@@ -29,7 +29,7 @@ This is a Node.js-based server monitoring tool that periodically pings a list of
     ```bash
     npm install
 
-3. Create a config.js file in the root directory. Use the following template:
+3. Create a config.js file in the root directory. Use the following template (change the ipadresses of the servers in the config.js):
 
     ```javascript
     const devices = {
@@ -38,8 +38,8 @@ This is a Node.js-based server monitoring tool that periodically pings a list of
         interval: 60000 // Interval for server checks in milliseconds
     },
     servers: [
-        { name: 'SCDE-MAVI-01', ip: '10.15.13.215' },
-        { name: 'SCDE-MAVI-02', ip: '10.15.13.225' }
+        { name: 'Server1', ip: '192.168.1.1' },
+        { name: 'Server2', ip: '192.168.1.2' }
     ],
     webhookUrl: 'https://hooks.slack.com/services/your/webhook/url' // Replace with your Slack webhook URL
     };
