@@ -1,7 +1,0 @@
-.gitignore
-.dockerignore
-monitoring_backup.js 
-config.js
-node_modules
-package-lock.json
-index.js
