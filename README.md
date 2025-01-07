@@ -26,10 +26,12 @@ This is a Node.js-based server monitoring tool that periodically pings a list of
 
 2. Install dependencies:
 
+    ```bash
     npm install
 
 3. Create a config.js file in the root directory. Use the following template:
 
+    ```javascript
     const devices = {
     metadata: {
         port: 3000, // Port for the web server
@@ -44,7 +46,8 @@ This is a Node.js-based server monitoring tool that periodically pings a list of
 
     module.exports = devices;
 
-4. Start the application
-    
+4. Start the application:
+
+    ```bash
     node monitoring.js
 
