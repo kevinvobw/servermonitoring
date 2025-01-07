@@ -1,13 +1,13 @@
 {
   "name": "servermonitor",
   "version": "1.0.0",
-  "description": "",
+  "description": "Script to monitor servers with a simple web-interface",
   "main": "monitoring.js",
   "scripts": {
     "start": "node monitoring.js"
   },
   "keywords": [],
-  "author": "Kevin Van Onckelen",
+  "author": "Kevinvobw",
   "license": "UNLICENSED",
   "dependencies": {
     "axios": "^1.7.9",
