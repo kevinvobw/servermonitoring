@@ -11,12 +11,6 @@ const port = 3000;
 const interval = 60000; // Check servers every minute
 app.use(express.json());
 
-// Define the servers to monitor
-//const servers = [
-  //  { name: 'SCDE-MAVI-01', ip: '10.15.13.215' },
-  //  { name: 'SCDE-MAVI-02', ip: '10.15.13.225' }
-// ];
-
 const servers = devices.servers;
 
 // Slack Webhook URL
