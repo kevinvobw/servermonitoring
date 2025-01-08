@@ -51,3 +51,6 @@ This is a Node.js-based server monitoring tool that periodically pings a list of
     ```bash
     node monitoring.js
 
+## Questions
+
+If you have any questions, please contact me at https://studio.volt-it.be/#Contact
